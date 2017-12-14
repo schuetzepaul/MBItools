@@ -102,11 +102,6 @@ if __name__ == '__main__':
     c1 = TCanvas("c1","c1",1200,600)
     
     gStyle.SetOptStat(0)
-    #gStyle.SetPalette(kRainbow)
-    #hist.GetXaxis().SetRangeUser(-4,4)
-    #hist.GetYaxis().SetRangeUser(-4,4)
-    #hist.GetZaxis().SetRangeUser(0,20)
-    hist.GetZaxis().SetRangeUser(0,0.45)
     hist.GetZaxis().SetNdivisions(5,0,5)
     
     hist.GetXaxis().SetTitle("x [mm]")
