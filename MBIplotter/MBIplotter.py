@@ -69,6 +69,8 @@ if __name__ == '__main__':
     hist = TH2D("hist","MBI",nx,startx,endx,ny,starty,endy)
 
     for ix in range(1,nx+1):
+        if not ix%10:
+            print "Bin " + str(ix) + " of " + str(nx)
         for iy in range(1,ny+1):
             xq = array('d', [0.05,0.95])
             yq = array('d', [0.0,0.0])
