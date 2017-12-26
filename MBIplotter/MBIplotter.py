@@ -88,9 +88,11 @@ if __name__ == '__main__':
             MAD=0.
             totalEntries=0
             for madi in range(0,nbins2):
-                if proj2.GetBinCenter(madi)>yq[0] and proj2.GetBinCenter(madi)<yq[1]:
-                    MAD += proj2.GetBinContent(madi)*abs(proj2.GetBinCenter(madi))#-proj2.GetMean())
-                    totalEntries += proj2.GetBinContent(madi)
+                binCenter = proj2.GetBinCenter(madi)
+                if binCenter>yq[0] and binCenter<yq[1]:
+                    binContent = proj2.GetBinContent(madi)
+                    MAD += binContent*abs(binCenter)
+                    totalEntries += binContent
                     
             if totalEntries>0:
                 MAD /= totalEntries
