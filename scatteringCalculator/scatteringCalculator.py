@@ -9,6 +9,7 @@ import csv
 
 
 x0alu = 88.97
+x0air = 303900.
 x0ni = 14.24
 x0pb = 5.612
 x0si = 93.70
@@ -26,6 +27,8 @@ materialChoice = raw_input("Enter your choice: ")
 radLength = 0.
 if materialChoice=="a":
     radLength = x0alu
+if materialChoice=="o":
+    radLength = x0air
 elif materialChoice=="n":
     radLength = x0ni
 elif materialChoice=="l":
