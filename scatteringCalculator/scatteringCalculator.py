@@ -27,7 +27,7 @@ materialChoice = raw_input("Enter your choice: ")
 radLength = 0.
 if materialChoice=="a":
     radLength = x0alu
-if materialChoice=="o":
+elif materialChoice=="o":
     radLength = x0air
 elif materialChoice=="n":
     radLength = x0ni
