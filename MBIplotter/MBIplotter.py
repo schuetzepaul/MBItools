@@ -2,7 +2,7 @@
 
 """
 Usage: 
-  MBIplotter.py ROOTFILE HISTO [-r rebin] [-c cut] [-q quant]
+  MBIplotter.py ROOTFILE HISTO [-r rebin] [-c cut] [-q quant] [-e energy]
 
 Plot the Material Budget from a specified histogram in a rootfile.
 
@@ -15,6 +15,7 @@ Options:
   -r rebin  Perform rebinning in XY with a factor of <rebin> [default: 1]
   -q quant  Specify the quantiles, give the inner percentage [default: 90.]
   -c cut    Specify the minimum number of entries for each distribution [default: 100]
+  -e energy Calculate the material budget using the given <energy>
 """
 
 from docopt import docopt
@@ -31,6 +32,22 @@ import csv
 
 from array import array
 
+def highfunc(energy, eps):
+        return 0.0136/energy*math.sqrt(eps)*(1.+0.038*math.log(eps))
+
+def getEps(trueAngle, energy, minE, maxE, precision=0.0005):
+    currentEps = (maxE+minE)/2.
+    currentHighland = highfunc(energy, currentEps)
+    currentPrecision = maxE-currentEps
+    
+    if currentPrecision < precision:
+        return currentEps
+    
+    if trueAngle > currentHighland:
+        return getEps(trueAngle, energy, currentEps, maxE, precision)
+    else:
+        return getEps(trueAngle, energy, minE, currentEps, precision)
+
 
 if __name__ == '__main__':
     args = docopt(__doc__)
@@ -41,6 +58,11 @@ if __name__ == '__main__':
     rebin = int(args['-r'])
     quantilesPercentage = float(args['-q'])
     eventCut = int(args['-c'])
+    if args['-e']:
+        useEps = True
+        energy = float(args['-e'])
+    else:
+        useEps = False
 
     labelsize = 0.05
     titlesize = 0.05
@@ -98,7 +120,12 @@ if __name__ == '__main__':
                 MAD /= totalEntries
                 
             MAD *= 1.2532
-            hist.SetBinContent(ix,iy,pow(MAD,2))
+
+            if useEps:
+                eps = getEps(MAD/1000.,energy,0.,5.)
+                hist.SetBinContent(ix,iy,eps)
+            else:
+                hist.SetBinContent(ix,iy,pow(MAD,2))
 
     
     c1 = TCanvas("c1","c1",1200,600)
@@ -108,7 +135,10 @@ if __name__ == '__main__':
     
     hist.GetXaxis().SetTitle("x [mm]")
     hist.GetYaxis().SetTitle("y [mm]")
-    hist.GetZaxis().SetTitle("MAD90(k_{x,y})^{2} [mrad^{2}]")
+    if useEps:
+        hist.GetZaxis().SetTitle("#varepsilon(k_{x,y})")
+    else:
+        hist.GetZaxis().SetTitle("MAD90(k_{x,y})^{2} [mrad^{2}]")
     
     hist.SetTitleSize(titlesize,"xyz")
     hist.SetLabelSize(titlesize,"xyz")
