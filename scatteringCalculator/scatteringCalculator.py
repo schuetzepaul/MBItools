@@ -19,21 +19,21 @@ def highland(energy, thickness, x0):
     return 0.0136/energy*math.sqrt(thickness/x0)*(1.+0.038*math.log(thickness/x0))
 
 
-message = "\nSpecify the material:\na: Aluminum \nn: Nickel \nl: Lead \ns: Silicon \no: Other \n"
+message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \no: Other \n"
 print message
 
 materialChoice = raw_input("Enter your choice: ")
 
 radLength = 0.
-if materialChoice=="a":
+if materialChoice=="al":
     radLength = x0alu
-elif materialChoice=="o":
+elif materialChoice=="air":
     radLength = x0air
-elif materialChoice=="n":
+elif materialChoice=="ni":
     radLength = x0ni
-elif materialChoice=="l":
+elif materialChoice=="pb":
     radLength = x0pb
-elif materialChoice=="s":
+elif materialChoice=="si":
     radLength = x0si
 elif materialChoice=="o":
     radLength = input("Enter the radiation length in mm: ")
