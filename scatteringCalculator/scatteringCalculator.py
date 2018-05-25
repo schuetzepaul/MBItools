@@ -12,6 +12,7 @@ x0alu = 88.97
 x0air = 303900.
 x0ni = 14.24
 x0pb = 5.612
+x0w = 3.504
 x0si = 93.70
 
 
@@ -19,7 +20,7 @@ def highland(energy, thickness, x0):
     return 0.0136/energy*math.sqrt(thickness/x0)*(1.+0.038*math.log(thickness/x0))
 
 
-message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \no: Other \n"
+message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \nw: Tungsten \no: Other \n"
 print message
 
 materialChoice = raw_input("Enter your choice: ")
@@ -33,6 +34,8 @@ elif materialChoice=="ni":
     radLength = x0ni
 elif materialChoice=="pb":
     radLength = x0pb
+elif materialChoice=="w":
+    radLength = x0w
 elif materialChoice=="si":
     radLength = x0si
 elif materialChoice=="o":
@@ -48,4 +51,5 @@ energy = float(raw_input("Enter the particle energy in GeV: "))
 
 angleWidth = highland(energy,thickness,radLength)*1.E3
 
+print "\nThe material budget is " + str(thickness/radLength)
 print "\nThe RMS angle is " + str(angleWidth) + " mrad\n"
