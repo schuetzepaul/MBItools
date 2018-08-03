@@ -57,5 +57,8 @@ energy = float(raw_input("Enter the particle energy in GeV: "))
 
 angleWidth = highland(energy,thickness,radLength)*1.E3
 
+lateralDisplacement = angleWidth*thickness/math.sqrt(3)
+
 print "\nThe material budget is " + str(thickness/radLength)
 print "\nThe RMS angle is " + str(angleWidth) + " mrad\n"
+print "\nThe lateral displacement is " + str(lateralDisplacement) + " um\n"
