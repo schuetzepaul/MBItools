@@ -29,9 +29,9 @@ def highland(energy, thickness, x0):
 
 
 message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \nw: Tungsten \nfe: Iron \ncu: Copper \nh2o: Water \nk: Kapton \no: Other \n"
-print message
+print(message)
 
-materialChoice = raw_input("Enter your choice: ")
+materialChoice = input("Enter your choice: ")
 
 radLength = 0.
 if materialChoice=="al":
@@ -57,18 +57,18 @@ elif materialChoice=="k":
 elif materialChoice=="o":
     radLength = input("Enter the radiation length in mm: ")
 else:
-    print "\nPlease choose a valid option next time, dumbass! I'm outta here!\n"
+    print("\nPlease choose a valid option next time, dumbass! I'm outta here!\n")
     exit(1)
 
 
-thickness = float(raw_input("Enter the material thickness in mm: "))
+thickness = float(input("Enter the material thickness in mm: "))
 
-energy = float(raw_input("Enter the particle energy in GeV: "))
+energy = float(input("Enter the particle energy in GeV: "))
 
 angleWidth = highland(energy,thickness,radLength)*1.E3
 
 lateralDisplacement = angleWidth*thickness/math.sqrt(3)
 
-print "\nThe material budget is " + str(thickness/radLength)
-print "\nThe RMS angle is " + str(angleWidth) + " mrad\n"
-print "\nThe lateral displacement is " + str(lateralDisplacement) + " um\n"
+print("\nThe material budget is " + str(thickness/radLength))
+print("\nThe RMS angle is " + str(angleWidth) + " mrad\n")
+print("\nThe lateral displacement is " + str(lateralDisplacement) + " um\n")
