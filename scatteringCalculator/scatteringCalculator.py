@@ -19,6 +19,10 @@ x0cu = 14.36
 x0h2o = 360.8
 x0k = 285.7
 
+try:
+    input = raw_input
+except NameError:
+    pass
 
 def highland(energy, thickness, x0):
     return 0.0136/energy*math.sqrt(thickness/x0)*(1.+0.038*math.log(thickness/x0))
