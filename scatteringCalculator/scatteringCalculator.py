@@ -19,6 +19,7 @@ x0cu = 14.36
 x0h2o = 360.8
 x0k = 285.7
 x0sc = 425.4 # Polyvinyltoluene, DESY Telescope scintillators
+x0fs = 122.9 
 
 try:
     input = raw_input
@@ -29,7 +30,7 @@ def highland(energy, thickness, x0):
     return 0.0136/energy*math.sqrt(thickness/x0)*(1.+0.038*math.log(thickness/x0))
 
 
-message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \nw: Tungsten \nfe: Iron \ncu: Copper \nh2o: Water \nk: Kapton \nsc: Plastic scintillator \no: Other \n"
+message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \nw: Tungsten \nfe: Iron \ncu: Copper \nh2o: Water \nk: Kapton \nsc: Plastic scintillator \nfs: Fused Silica \no: Other \n"
 print(message)
 
 materialChoice = input("Enter your choice: ")
@@ -57,6 +58,8 @@ elif materialChoice=="k":
     radLength = x0k
 elif materialChoice=="sc":
     radLength = x0sc
+elif materialChoice=="fs":
+    radLength = x0fs
 elif materialChoice=="o":
     radLength = input("Enter the radiation length in mm: ")
 else:
