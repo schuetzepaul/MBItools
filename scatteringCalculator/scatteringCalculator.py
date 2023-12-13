@@ -19,10 +19,13 @@ x0cu = 14.36
 x0h2o = 360.8
 x0k = 285.7
 x0sc = 425.4 # Polyvinyltoluene, DESY Telescope scintillators
-x0fs = 122.9 
+x0fs = 122.9
+x0ti = 35.6
+x0gr = 193.2
 x0br =  356.5
 x0tis = 376.3
 x0bon = 148.2
+x0pcb = 167.608
 
 try:
     input = raw_input
@@ -33,7 +36,7 @@ def highland(energy, thickness, x0):
     return 0.0136/energy*math.sqrt(thickness/x0)*(1.+0.038*math.log(thickness/x0))
 
 
-message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \nw: Tungsten \nfe: Iron \ncu: Copper \nh2o: Water \nk: Kapton \nsc: Plastic scintillator \nfs: Fused Silica \nbr: Brain \ntis: Tissue \nbon: Bone \no: Other \n"
+message = "\nSpecify the material:\nal: Aluminum \nair: Air \nni: Nickel \npb: Lead \nsi: Silicon \nw: Tungsten \nfe: Iron \ncu: Copper \nh2o: Water \nk: Kapton \nsc: Plastic scintillator \nfs: Fused Silica \nti: Titanium Ti-5 \ngr: Graphite \nbr: Brain \ntis: Tissue \nbon: Bone \npcb: PCB\no: Other \n"
 print(message)
 
 materialChoice = input("Enter your choice: ")
@@ -63,12 +66,18 @@ elif materialChoice=="sc":
     radLength = x0sc
 elif materialChoice=="fs":
     radLength = x0fs
+elif materialChoice=="ti":
+    radLength = x0ti
+elif materialChoice=="gr":
+    radLength = x0gr
 elif materialChoice=="br":
     radLength = x0br
 elif materialChoice=="tis":
     radLength = x0tis
 elif materialChoice=="bon":
     radLength = x0bon
+elif materialChoice=="pcb":
+    radLength = x0pcb
 
 elif materialChoice=="o":
     radLength = input("Enter the radiation length in mm: ")
