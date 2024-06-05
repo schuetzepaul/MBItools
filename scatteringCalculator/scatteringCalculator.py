@@ -26,6 +26,7 @@ x0_dict = {"alu": [88.97, "Aluminium"]
            , "bon": [148.2, "Bone"]
            , "pcb": [167.608, "PCB"]
            , "plg": [340.7, "Plexiglass"]
+           , "peek": [319.6, "PEEK (Polyether ether ketone)"]
            }
 
 try:
